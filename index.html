@@ -1,0 +1,615 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gifswap</title>
+    <style>
+      .main_wrapper {
+        margin-top: 10rem;
+        position: relative;
+        margin-left: 5rem;
+        width: fit-content;
+      }
+      .gif_wrapper {
+        height: auto;
+        width: auto;
+        max-width: fit-content;
+
+        position: relative;
+        min-width: 2rem;
+        min-height: 2rem;
+        display: flex;
+      }
+      .gif_vanilla {
+        height: 20rem;
+        width: auto;
+      }
+      .gif_mexico,
+      .gif_japan,
+      .gif_german {
+        height: 20rem;
+        width: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0%;
+      }
+
+      .whole_wrapper {
+        width: fit-content;
+        height: fit-content;
+        position: absolute;
+        top: -22;
+        right: -30;
+      }
+      .whole_container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 107px;
+      }
+
+      .top_container {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: stretch;
+        column-gap: 14px;
+        width: 200px;
+        height: 40px;
+        padding: 14px;
+        left: 11;
+        bottom: 29;
+        /* background-color: bisque; */
+        background-image: url("https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/6609b09f3ad06dd143dbeb7d_background_png.png");
+        /* //////////////////////////// replace in Webflow */
+
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      @keyframes main_float {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+      .top_container {
+        animation-name: main_float;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.38, 0, 0.52, 1);
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+
+      @keyframes bubble_3_float {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(-9px);
+        }
+      }
+      .bubble_3 {
+        animation-name: bubble_3_float;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.38, 0, 0.52, 1);
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+
+      @keyframes bubble_2_float {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-6px);
+        }
+      }
+      .bubble_2 {
+        animation-name: bubble_2_float;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.38, 0, 0.52, 1);
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+
+      @keyframes bubble_1_float {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(-4px);
+        }
+      }
+      .bubble_1 {
+        animation-name: bubble_1_float;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.38, 0, 0.52, 1);
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+      .play_image {
+        width: 36px;
+        height: 36px;
+      }
+      .play_text {
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 30px;
+        color: white;
+        margin: 0;
+        height: 30px;
+        margin-bottom: 20px;
+        white-space: nowrap;
+      }
+      .bubble_1 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      .bubble_2 {
+        position: absolute;
+        left: 7;
+        bottom: 4;
+      }
+      .bubble_3 {
+        position: absolute;
+        left: 18;
+        bottom: 15;
+      }
+      .text_mask {
+        overflow: hidden;
+        height: 37px;
+        width: max-content;
+        /* background-color: blue; */
+        position: relative;
+        width: 230;
+      }
+      .slidey {
+        transform: translateY(0px);
+      }
+      .text_slider {
+        display: contents;
+        position: absolute;
+        flex-direction: column;
+        column-gap: 0;
+        align-items: center;
+        height: auto;
+        width: auto;
+      }
+      .text_mexican {
+        width: 135;
+      }
+
+      /* Utitlity classes */
+
+      .play_text_main {
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 30px;
+        color: white;
+        position: absolute;
+        margin: 0;
+      }
+
+      .unrendered {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_wrapper">
+      <div class="gif_wrapper">
+        <img
+          class="gif_vanilla unrendered"
+          loading="eager"
+          src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660682e258ee7a73ec2f0520_Lifting_vanilla_24fps.gif"
+        />
+        <img
+          class="gif_mexico unrendered"
+          loading="eager"
+          src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660682e3038499f365f61be9_Lifting_mexico_24fps.gif"
+        />
+        <img
+          class="gif_german unrendered"
+          loading="eager"
+          src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660682e2c35a283dfbc40db4_Lifting_german_24fps.gif"
+        />
+        <img
+          class="gif_japan unrendered"
+          loading="eager"
+          src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660682e2038499f365f61b00_Lifting_japan_24fps.gif"
+        />
+        <div class="whole_wrapper">
+          <div class="whole_container">
+            <div class="top_container">
+              <img
+                class="play_image"
+                src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660871a1b0969e1098321c1a_play.svg"
+              />
+              <div class="text_mask">
+                <div class="slidey">
+                  <div class="text_slider">
+                    <p class="play_text">Play Video</p>
+                    <p class="play_text text_mexican">Reproducir Vídeo</p>
+                    <p class="play_text">Play Video</p>
+                    <p class="play_text text_german">Video Abspielen</p>
+                    <p class="play_text">Play Video</p>
+                    <p class="play_text text_japanese">プレイ動画</p>
+                    <p class="play_text">Play Video</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img
+              class="bubble_1"
+              src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/6609b0a7ebc1f73b67e9a551_bubble_1.svg"
+            />
+            <img
+              class="bubble_2"
+              src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/6609b0a7848ab2de69425b71_bubble_2.svg"
+            />
+            <img
+              class="bubble_3"
+              src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/6609b0a70de08fa8f4356021_bubble_3.svg"
+            />
+          </div>
+        </div>
+        <!-- paly button content -->
+
+        <div class="bubble_1"></div>
+        <div class="bubble_2"></div>
+        <div class="bubble_3"></div>
+      </div>
+    </div>
+
+    <script>
+      const gifWrapper = document.querySelector(".gif_wrapper");
+      const gifGerman = document.querySelector(".gif_german");
+      const gifJapan = document.querySelector(".gif_japan");
+      const gifMexico = document.querySelector(".gif_mexico");
+      const gifVanilla = document.querySelector(".gif_vanilla");
+      const slidey = document.querySelector(".slidey");
+      const topContainer = document.querySelector(".top_container");
+
+      var counter = 1;
+      //////////////////////
+      //   gif synchronizer
+      /////////////////////
+
+      let gifCount = 0;
+      const totalGifs = document.querySelectorAll('img[src*=".gif"]').length; // Total number of GIFs
+
+      function gifLoaded(img) {
+        gifCount++;
+
+        if (gifCount === totalGifs) {
+          gifVanilla.classList.remove("unrendered");
+          gifJapan.classList.remove("unrendered");
+          gifMexico.classList.remove("unrendered");
+          gifGerman.classList.remove("unrendered");
+
+          console.log("All GIFs have loaded!");
+        }
+      }
+
+      const gifs = document.querySelectorAll('img[src*=".gif"]');
+
+      for (const gif of gifs) {
+        gif.addEventListener("load", () => gifLoaded(gif));
+      }
+      ///////////////////////////
+      //////    /gif synchronizer
+      ///////////////////////////
+      function hoveredon() {
+        if (counter === 1) {
+          console.log("route 1");
+          //   fade out script
+          gifVanilla.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "forwards",
+          });
+          //   gifVanilla.style.opacity = "0";
+          //adjust width for text
+          topContainer.animate(
+            [
+              { width: "200px" }, // Start: Initial width (replace with actual initial width)
+              { width: "305px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+          topContainer.animate(
+            [
+              { width: "200px" }, // Start: Initial width (replace with actual initial width)
+              { width: "320px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+          // text slide up
+          slidey.animate(
+            [
+              { transform: "translateY(0px)" },
+              { transform: "translateY(-50px)" },
+            ],
+            {
+              duration: 200,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+          //   end
+
+          //   fade in script
+          gifMexico.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "forwards",
+            delay: 200,
+          });
+          //   gifMexico.style.opacity = "1";
+          //   end
+        } else if (counter === 2) {
+          console.log("route 2");
+          //   fade out script
+          gifVanilla.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "forwards",
+          });
+          //   gifVanilla.style.opacity = "0";
+          //   end
+          //adjust width for text
+          topContainer.animate(
+            [
+              { width: "200px" }, // Start: Initial width (replace with actual initial width)
+              { width: "285px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+          // text slide up
+          slidey.animate(
+            [
+              { transform: "translateY(-100px)" },
+              { transform: "translateY(-150px)" },
+            ],
+            {
+              duration: 200,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+          //   fade in script
+          gifGerman.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "forwards",
+            delay: 200,
+          });
+          //   gifGerman.style.opacity = "1";
+          //   end
+        } else if (counter === 3) {
+          console.log("route 3");
+          //   fade out script
+          gifVanilla.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "forwards",
+          });
+          //   gifVanilla.style.opacity = "0";
+          //   end
+          //adjust width for text
+          topContainer.animate(
+            [
+              { width: "200px" }, // Start: Initial width (replace with actual initial width)
+              { width: "210px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+          // text slide up
+          slidey.animate(
+            [
+              { transform: "translateY(-200px)" },
+              { transform: "translateY(-250px)" },
+            ],
+            {
+              duration: 200,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+          //   fade in script
+          gifJapan.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "forwards",
+            delay: 200,
+          });
+          //   gifJapan.style.opacity = "1";
+          //   end
+        } else {
+          console.log("counter_error");
+        }
+      }
+
+      function hoverend() {
+        if (counter === 1) {
+          console.log("out 1");
+          //   fade out script
+          gifMexico.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "forwards",
+          });
+          //   gifMexico.style.opacity = "0";
+          //   end
+          //adjust width for text
+          topContainer.animate(
+            [
+              { width: "305px" }, // Start: Initial width (replace with actual initial width)
+              { width: "200px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+          // text slide up
+          slidey.animate(
+            [
+              { transform: "translateY(-50px)" },
+              { transform: "translateY(-100px)" },
+            ],
+            {
+              duration: 200,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+
+          //   fade in script
+          gifVanilla.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "forwards",
+            delay: 200,
+          });
+          //   gifVanilla.style.opacity = "1";
+          //   end
+        } else if (counter === 2) {
+          console.log("out 2");
+          //   fade out script
+          gifGerman.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "forwards",
+          });
+          //   gifGerman.style.opacity = "0";
+          //   end
+          //adjust width for text
+          topContainer.animate(
+            [
+              { width: "285px" }, // Start: Initial width (replace with actual initial width)
+              { width: "200px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+          // text slide up
+          slidey.animate(
+            [
+              { transform: "translateY(-150px)" },
+              { transform: "translateY(-200px)" },
+            ],
+            {
+              duration: 200,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+          //   fade in script
+          gifVanilla.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "forwards",
+            delay: 200,
+          });
+          //   gifVanilla.style.opacity = "1";
+          //   end
+        } else if (counter === 3) {
+          console.log("out 3");
+          //   fade out script
+          gifJapan.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "forwards",
+          });
+          //   gifJapan.style.opacity = "0";
+          //   end
+          //adjust width for text
+          topContainer.animate(
+            [
+              { width: "210px" }, // Start: Initial width (replace with actual initial width)
+              { width: "200px" }, // End: New width (replace with desired width)
+            ],
+            {
+              duration: 100,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+          // text slide up
+          slidey.animate(
+            [
+              { transform: "translateY(-250px)" },
+              { transform: "translateY(-300px)" },
+            ],
+            {
+              duration: 200,
+              easing: "ease-in",
+              fill: "forwards",
+            }
+          );
+          //   fade in script
+          gifVanilla.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "forwards",
+            delay: 200,
+          });
+          //   gifVanilla.style.opacity = "1";
+          //   end
+        } else {
+          console.log("out_error");
+        }
+
+        if (counter === 3) {
+          counter = 1;
+        } else {
+          counter++;
+        }
+        console.log(counter);
+      }
+      gifWrapper.addEventListener("mouseenter", hoveredon);
+      gifWrapper.addEventListener("mouseleave", hoverend);
+    </script>
+  </body>
+</html>
