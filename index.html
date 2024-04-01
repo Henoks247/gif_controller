@@ -95,7 +95,7 @@
         align-items: center;
         justify-content: left;
         column-gap: 14px;
-        width: 200px;
+        width: 210px;
         height: auto;
         padding: 14px;
 
@@ -236,6 +236,24 @@
       .text_mexican {
         width: 135;
       }
+      .svgs_container {
+        position: relative;
+      }
+
+      .playtextenglish {
+        position: absolute;
+        left: 0;
+        top: -15;
+      }
+
+      .playtextspanish,
+      .playtextgerman,
+      .playtextjapanese {
+        position: absolute;
+        left: 0;
+        top: -15;
+        opacity: 0%;
+      }
 
       /* Utitlity classes */
 
@@ -283,6 +301,24 @@
                 class="play_image"
                 src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660871a1b0969e1098321c1a_play.svg"
               />
+              <div class="svgs_container">
+                <img
+                  class="playtextenglish"
+                  src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660ae7c705f93df71fb89403_playtextenglish.svg"
+                />
+                <img
+                  class="playtextspanish"
+                  src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660ae7c714c552a4a0fdd639_playtextspanish.svg"
+                />
+                <img
+                  class="playtextgerman"
+                  src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660ae7c7de2240f828e5a758_playtextgerman.svg"
+                />
+                <img
+                  class="playtextjapanese"
+                  src="https://uploads-ssl.webflow.com/61c46d1cafdb725b67c14856/660ae7c7c4d6423f268dc6ae_playtextjapanese.svg"
+                />
+              </div>
               <div class="text_mask">
                 <div class="slidey">
                   <div class="text_slider">
@@ -328,6 +364,10 @@
       const gifVanilla = document.querySelector(".gif_vanilla");
       const slidey = document.querySelector(".slidey");
       const topContainer = document.querySelector(".top_container");
+      const playtextenglish = document.querySelector(".playtextenglish");
+      const playtextspanish = document.querySelector(".playtextspanish");
+      const playtextgerman = document.querySelector(".playtextgerman");
+      const playtextjapanese = document.querySelector(".playtextjapanese");
 
       var counter = 1;
       //////////////////////
@@ -368,11 +408,16 @@
             fill: "both",
           });
           //   gifVanilla.style.opacity = "0";
+          playtextenglish.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "both",
+          });
           //adjust width for text
           topContainer.animate(
             [
-              { width: "200px" }, // Start: Initial width (replace with actual initial width)
-              { width: "300px" }, // End: New width (replace with desired width)
+              { width: "210px" }, // Start: Initial width (replace with actual initial width)
+              { width: "310px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -413,6 +458,12 @@
             delay: 200,
           });
           //   gifMexico.style.opacity = "1";
+          playtextspanish.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "both",
+            delay: 200,
+          });
           //   end
         } else if (counter === 2) {
           console.log("route 2");
@@ -423,12 +474,17 @@
             fill: "both",
           });
           //   gifVanilla.style.opacity = "0";
+          playtextenglish.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "both",
+          });
           //   end
           //adjust width for text
           topContainer.animate(
             [
-              { width: "200px" }, // Start: Initial width (replace with actual initial width)
-              { width: "285px" }, // End: New width (replace with desired width)
+              { width: "210px" }, // Start: Initial width (replace with actual initial width)
+              { width: "295px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -456,6 +512,12 @@
             delay: 200,
           });
           //   gifGerman.style.opacity = "1";
+          playtextgerman.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "both",
+            delay: 200,
+          });
           //   end
         } else if (counter === 3) {
           console.log("route 3");
@@ -466,12 +528,17 @@
             fill: "both",
           });
           //   gifVanilla.style.opacity = "0";
+          playtextenglish.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "both",
+          });
           //   end
           //adjust width for text
           topContainer.animate(
             [
-              { width: "200px" }, // Start: Initial width (replace with actual initial width)
-              { width: "210px" }, // End: New width (replace with desired width)
+              { width: "210px" }, // Start: Initial width (replace with actual initial width)
+              { width: "220px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -499,6 +566,12 @@
             delay: 200,
           });
           //   gifJapan.style.opacity = "1";
+          playtextjapanese.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "both",
+            delay: 200,
+          });
           //   end
         } else {
           console.log("counter_error");
@@ -515,12 +588,17 @@
             fill: "both",
           });
           //   gifMexico.style.opacity = "0";
+          playtextspanish.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "both",
+          });
           //   end
           //adjust width for text
           topContainer.animate(
             [
-              { width: "300px" }, // Start: Initial width (replace with actual initial width)
-              { width: "200px" }, // End: New width (replace with desired width)
+              { width: "310px" }, // Start: Initial width (replace with actual initial width)
+              { width: "210px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -549,6 +627,12 @@
             delay: 200,
           });
           //   gifVanilla.style.opacity = "1";
+          playtextenglish.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "both",
+            delay: 200,
+          });
           //   end
         } else if (counter === 2) {
           console.log("out 2");
@@ -559,12 +643,17 @@
             fill: "both",
           });
           //   gifGerman.style.opacity = "0";
+          playtextgerman.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "both",
+          });
           //   end
           //adjust width for text
           topContainer.animate(
             [
-              { width: "285px" }, // Start: Initial width (replace with actual initial width)
-              { width: "200px" }, // End: New width (replace with desired width)
+              { width: "295px" }, // Start: Initial width (replace with actual initial width)
+              { width: "210px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -592,6 +681,12 @@
             delay: 200,
           });
           //   gifVanilla.style.opacity = "1";
+          playtextenglish.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "both",
+            delay: 200,
+          });
           //   end
         } else if (counter === 3) {
           console.log("out 3");
@@ -602,12 +697,17 @@
             fill: "both",
           });
           //   gifJapan.style.opacity = "0";
+          playtextjapanese.animate([{ opacity: "1" }, { opacity: "0.0" }], {
+            duration: 200,
+            easing: "ease-in",
+            fill: "both",
+          });
           //   end
           //adjust width for text
           topContainer.animate(
             [
-              { width: "210px" }, // Start: Initial width (replace with actual initial width)
-              { width: "200px" }, // End: New width (replace with desired width)
+              { width: "220px" }, // Start: Initial width (replace with actual initial width)
+              { width: "210px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -635,6 +735,12 @@
             delay: 200,
           });
           //   gifVanilla.style.opacity = "1";
+          playtextenglish.animate([{ opacity: "0" }, { opacity: "1" }], {
+            duration: 200,
+            easing: "ease-out",
+            fill: "both",
+            delay: 200,
+          });
           //   end
         } else {
           console.log("out_error");
