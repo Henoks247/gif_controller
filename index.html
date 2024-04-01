@@ -5,6 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>gifswap</title>
     <style>
+      @font-face {
+        font-family: "kamber";
+        src: url("fonts/kamber-bold-webfont.woff") format("woff");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "kamber";
+        src: url("fonts/kamber-light-webfont.woff") format("woff");
+        font-weight: light;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "kamber";
+        src: url("fonts/kamber-medium-webfont.woff") format("woff");
+        font-weight: medium;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "kamber";
+        src: url("fonts/kamber-regular-webfont.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "kamber";
+        src: url("fonts/kamber-semibold-webfont.woff") format("woff");
+        font-weight: semibold;
+        font-style: normal;
+      }
+
       .main_wrapper {
         padding: 2rem;
         position: relative;
@@ -150,9 +185,9 @@
         height: 36px;
       }
       .play_text {
-        font-family: inherit;
-        font-weight: 600;
-        font-size: 30px;
+        font-family: kamber;
+        font-weight: semibold;
+        font-size: 28px;
         color: white;
         margin: 0;
         height: 30px;
@@ -178,13 +213,14 @@
       .text_mask {
         overflow: hidden;
         height: 37px;
-        width: max-content;
+        width: 300px;
+        padding-top: 7;
         /* background-color: blue; */
         position: relative;
-        width: 230;
       }
       .slidey {
         transform: translateY(0px);
+        width: 50px;
       }
       .text_slider {
         display: contents;
@@ -193,7 +229,7 @@
         column-gap: 0;
         align-items: center;
         height: auto;
-        width: auto;
+        width: 200px;
       }
       .text_mexican {
         width: 135;
@@ -334,7 +370,7 @@
           topContainer.animate(
             [
               { width: "200px" }, // Start: Initial width (replace with actual initial width)
-              { width: "305px" }, // End: New width (replace with desired width)
+              { width: "300px" }, // End: New width (replace with desired width)
             ],
             {
               duration: 100,
@@ -342,17 +378,17 @@
               fill: "both",
             }
           );
-          topContainer.animate(
-            [
-              { width: "200px" }, // Start: Initial width (replace with actual initial width)
-              { width: "320px" }, // End: New width (replace with desired width)
-            ],
-            {
-              duration: 100,
-              easing: "ease-in",
-              fill: "both",
-            }
-          );
+          //   topContainer.animate(
+          //     [
+          //       { width: "200px" }, // Start: Initial width (replace with actual initial width)
+          //       { width: "320px" }, // End: New width (replace with desired width)
+          //     ],
+          //     {
+          //       duration: 100,
+          //       easing: "ease-in",
+          //       fill: "both",
+          //     }
+          //   );
           // text slide up
           slidey.animate(
             [
@@ -445,7 +481,7 @@
           slidey.animate(
             [
               { transform: "translateY(-200px)" },
-              { transform: "translateY(-250px)" },
+              { transform: "translateY(-260px)" },
             ],
             {
               duration: 200,
@@ -481,7 +517,7 @@
           //adjust width for text
           topContainer.animate(
             [
-              { width: "305px" }, // Start: Initial width (replace with actual initial width)
+              { width: "230px" }, // Start: Initial width (replace with actual initial width)
               { width: "200px" }, // End: New width (replace with desired width)
             ],
             {
@@ -580,7 +616,7 @@
           // text slide up
           slidey.animate(
             [
-              { transform: "translateY(-250px)" },
+              { transform: "translateY(-260px)" },
               { transform: "translateY(-300px)" },
             ],
             {
